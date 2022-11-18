@@ -152,3 +152,37 @@ Modify to your own Lorawan platform application EUI, such as Thing Net Work or H
 Connect MaPie to PC.
 
 Use Thonny IDE, upload all file to MaPie.
+
+
+
+# TTN 
+
+## Formatter Codes
+
+Because the data sent over Lorawan is a byte stream, it needs to be parsed into the corresponding data on TTN.
+
+ ```js
+function decodeUplink(input) {
+  
+  var temp = input.bytes[0]
+  var humi = input.bytes[1]
+  var adc = input.bytes[2]
+  var bat = input.bytes[3]
+  var num = input.bytes[4] * 100 + input.bytes[5] 
+  
+  return {
+    data:{
+    //adc,
+    //temp,
+    //humi,
+    //bat,
+    //num,
+    field1:adc,
+    field2:temp,
+    field3:humi,
+    field4:bat,
+    field5:num,
+    },
+  };
+}
+ ```
